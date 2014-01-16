@@ -113,6 +113,10 @@ properties:
     catalina_opts: -Xmx384m -XX:MaxPermSize=128m
     protocol: http
 
+  saml_login:
+    catalina_opts: -Xmx384m -XX:MaxPermSize=128m
+    protocol: http
+
   router:
     status:
       user: router
