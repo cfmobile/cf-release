@@ -144,7 +144,7 @@ jobs:
 
   - name: login_z1
     release: (( meta.release.name ))
-    template: (( merge || "pivotal_login" ))
+    template: saml_login
     instances: 1
     resource_pool: medium_z1
     networks:

@@ -333,7 +333,7 @@ jobs:
 
   # using login template, that supports self-signed certs
   - name: login_z1
-    template: login
+    template: saml_login
 
 compilation:
   cloud_properties:
