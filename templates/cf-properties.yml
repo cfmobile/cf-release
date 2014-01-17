@@ -159,7 +159,7 @@ properties:
     spring_profiles: ldap
     ldap:
       profile_type: simple-bind # options are simple-bind, search-and-bind, search-and-compare
-      url: "ldap://192.168.3.39:10389/" #required
+      url: "ldaps://192.168.3.39:10636/" #required
       userDNPattern: 'cn={0},ou=Users,dc=test,dc=com;cn={0},ou=OtherUsers,dc=example,dc=com' # required for simple-bind
       userDN: cn=admin,ou=Users,dc=test,dc=com # required for search-and-bind and search-and-compare
       userPassword: password # required for search-and-bind and search-and-compare
@@ -178,16 +178,14 @@ properties:
         lQ23NhTaljASF0g8AZ7SZEItU8JFYqf/KnNJ7FPwo4LbMbr7Zg6BRKBvnQ==
         -----END CERTIFICATE-----
       sslCertificateAlias: ldaps 
+      
   uaa:
     catalina_opts: (( merge ))
 
     url: (( "https://uaa." domain ))
 
     no_ssl: false
-
-    login:
-      addnew: true
-
+    
     scim:
       users: (( merge ))
 
@@ -204,6 +202,9 @@ properties:
     batch:
       username: (( merge ))
       password: (( merge ))
+      
+    login:
+      addnew: true  
 
     clients:
       login:
