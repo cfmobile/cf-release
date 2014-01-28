@@ -185,7 +185,7 @@ properties:
     url: (( "https://uaa." domain ))
 
     no_ssl: false
-    
+
     scim:
       users: (( merge ))
 
