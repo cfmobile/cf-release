@@ -588,3 +588,8 @@ maven/apache-maven-3.1.1-bin.tar.gz:
   sha: !binary |-
     NjMwZWVhMjEwN2IwNzQyYWNiMzE1YjIxNDAwOWJhMDg2MDJkZGE1Zg==
   size: 5494427
+uaa/cloudfoundry-identity-uaa-1.5.0.war:
+  object_id: b62ff53a-54b3-45cf-bda1-6292d525fb9c
+  sha: !binary |-
+    ZDNiMzI0YjVlMjhjZDg1MzA5MzU2OTllNzRjODVjN2E4NjliM2RiZQ==
+  size: 20778508
