@@ -219,6 +219,8 @@ properties:
 
     spring_profiles: ~
 
+    user: ~
+
     clients:
       <<: (( merge || nil ))
       login:
