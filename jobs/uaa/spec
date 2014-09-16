@@ -119,7 +119,9 @@ properties:
   uaa.dump_requests:
     description:
   uaa.login.client_secret:
-    description:
+    description: 'Deprecated. Default login client secret if no login client is defined'
+  uaa.clients.login.secret:
+    description: 'Login client secret - overrides uaa.login.client_secret'
   uaa.require_https:
     description:
   uaa_client_auth_credentials.password:

@@ -8,6 +8,19 @@ name: login
 logging:
   config: /var/vcap/jobs/login/config/log4j.properties
 
+<%
+  # The login secret is defined in one of two properties
+  # uaa.login.client_secret or uaa.clients.login.secret
+  # If both of these are defined, then use the latter
+  if properties.uaa && properties.uaa.clients && properties.uaa.clients.login && properties.uaa.clients.login.secret
+    login_secret = properties.uaa.clients.login.secret
+  elsif properties.uaa && properties.uaa.login && properties.uaa.login.client_secret
+    login_secret = properties.uaa.login.client_secret
+  else
+    raise ArgumentError, 'uaa.login.client_secret or uaa.clients.login.secret must be set.'
+  end
+%>
+
 <% protocol = (properties.login && properties.login.protocol) ? properties.login.protocol : "http" %>
 <% if !properties.login || !properties.login.uaa_base
   # Fix this to https when SSL certs are working in dev and staging
@@ -41,11 +54,7 @@ tiles: <% properties.login.tiles.each do |tile| %>
 <% end %>
 
 # The secret that this login server will use to authenticate to the uaa
-<% if !properties.uaa.clients || !properties.uaa.clients.login %>
-LOGIN_SECRET: <%= properties.uaa.login.client_secret %>
-<% else %>
-LOGIN_SECRET: <%= properties.uaa.clients.login.secret %>
-<% end %>
+LOGIN_SECRET: <%= login_secret %>
 <% if !properties.uaa.require_https.nil? %>
 require_https: <%= properties.uaa.require_https %>
 <% end %>

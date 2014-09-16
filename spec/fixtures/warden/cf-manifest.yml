@@ -2669,7 +2669,6 @@ properties:
 '
     ldap: null
     login:
-      client_secret: null
     no_ssl: true
     scim:
       external_groups: null

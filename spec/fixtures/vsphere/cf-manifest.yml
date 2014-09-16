@@ -854,7 +854,7 @@ properties:
         authorities: oauth.login
         authorized-grant-types: authorization_code,client_credentials,refresh_token
         override: true
-        redirect-uri: https://login.0.0.0.3.xip.io
+        redirect-uri: http://login.0.0.0.3.xip.io
         scope: openid,oauth.approvals
         secret: login_secret
       notifications:
@@ -889,7 +889,6 @@ properties:
       verification_key: vk
     ldap: null
     login:
-      client_secret: null
     no_ssl: false
     scim:
       external_groups: null

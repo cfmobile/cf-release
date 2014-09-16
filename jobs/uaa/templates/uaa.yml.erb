@@ -2,6 +2,22 @@
 <% uaa_db = properties.uaadb.databases.find { |db| db.tag == "uaa" } %>
 <% uaa_role = properties.uaadb.roles.find { |role| role.tag == "admin" } %>
 
+<%
+  # The login secret is defined in one of two properties
+  # uaa.login.client_secret or uaa.clients.login.secret
+  # If both of these are defined, then use the latter
+  if properties.uaa && properties.uaa.clients && properties.uaa.clients.login && properties.uaa.clients.login.secret
+    login_secret = properties.uaa.clients.login.secret
+  elsif properties.uaa && properties.uaa.login && properties.uaa.login.client_secret
+    login_secret = properties.uaa.login.client_secret
+  else
+    raise ArgumentError, 'uaa.login.client_secret or uaa.clients.login.secret must be set.'
+  end
+  if properties.uaa && properties.uaa.clients && properties.uaa.clients.login
+    properties.uaa.clients.login.secret = login_secret
+  end
+%>
+
 name: uaa
 
 database:
@@ -100,7 +116,7 @@ oauth:
     login:
       id: login
       override: true
-      secret: "<%= properties.uaa.login.client_secret %>"
+      secret: "<%= login_secret %>"
       authorized-grant-types: authorization_code,client_credentials,refresh_token
       authorities: oauth.login
       scope: openid,oauth.approvals

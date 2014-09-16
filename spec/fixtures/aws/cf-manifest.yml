@@ -884,7 +884,6 @@ properties:
       verification_key: vk
     ldap: null
     login:
-      client_secret: null
     no_ssl: false
     scim:
       external_groups: null
